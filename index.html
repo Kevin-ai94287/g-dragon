@@ -210,6 +210,36 @@
             color: var(--text-light);
         }
         
+        .notice-card {
+            cursor: pointer;
+        }
+        
+        .notice-card .detail {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .notice-card .detail.show {
+            display: block;
+        }
+        
+        .notice-card .expand-hint {
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .notice-card:hover .expand-hint {
+            opacity: 1;
+        }
+        
         /* Tour Section */
         .tour-section {
             background: var(--gray);
@@ -454,35 +484,59 @@
                 <a href="#">查看全部 →</a>
             </div>
             <div class="notice-grid">
-                <article class="notice-card">
+                <article class="notice-card" onclick="toggleDetail(this)">
                     <span class="tag fam">FAN MEETING</span>
                     <h3>2026 G-DRAGON 'FAM' MEETING 泰国粉丝见面会公告</h3>
                     <p class="meta">2026年 · 来源: 官方粉丝社区</p>
+                    <div class="detail">
+                        <p>2026年G-DRAGON 'FAM' MEETING泰国站已于曼谷成功举办！活动包含FAM ZONE展位、FAM EVENT互动环节，粉丝见面会吸引了来自世界各地的粉丝参加。活动期间发布了官方周边商品，包括FAM KIT等限定商品。</p>
+                        <p class="expand-hint">点击收起</p>
+                    </div>
                 </article>
-                <article class="notice-card">
+                <article class="notice-card" onclick="toggleDetail(this)">
                     <span class="tag merch">MERCH</span>
                     <h3>2026 G-DRAGON 'FAM' MEETING 官方周边 Online Pre-sales</h3>
                     <p class="meta">2026年 · 来源: withmuu.com</p>
+                    <div class="detail">
+                        <p>官方周边现已开启线上预购！包括FAM MEETING限定T恤、帽子、海报等商品。可通过withmuu.com/us进行购买，支持国际配送。部分商品已售罄，第二批预购将择日开放。</p>
+                        <p class="expand-hint">点击收起</p>
+                    </div>
                 </article>
-                <article class="notice-card">
+                <article class="notice-card" onclick="toggleDetail(this)">
                     <span class="tag">NOTICE</span>
                     <h3>Update on Legal Actions to Protect G-DRAGON's Rights (February 24)</h3>
                     <p class="meta">2026年2月 · 来源: 官方</p>
+                    <div class="detail">
+                        <p>关于保护权志龙权益的法律行动更新公告。权志龙所属社及相关法律团队持续关注并处理任何侵犯艺人权益的行为，包括未经授权的商品、虚假信息等。官方呼吁粉丝通过正规渠道支持权志龙。</p>
+                        <p class="expand-hint">点击收起</p>
+                    </div>
                 </article>
-                <article class="notice-card">
+                <article class="notice-card" onclick="toggleDetail(this)">
                     <span class="tag event">EVENT</span>
                     <h3>G-DRAGON IN CINEMA [Übermensch] 'FAM' 首映礼中奖公布</h3>
                     <p class="meta">2026年 · 来源: 官方</p>
+                    <div class="detail">
+                        <p>G-DRAGON 2025世界巡回演唱会纪录片《IN CINEMA [Übermensch] 'FAM'》首映礼中奖名单公布！本次首映礼采用抽选制，邀请幸运粉丝参加特别放映会。活动已在多个国家举办。</p>
+                        <p class="expand-hint">点击收起</p>
+                    </div>
                 </article>
-                <article class="notice-card">
+                <article class="notice-card" onclick="toggleDetail(this)">
                     <span class="tag fam">FAN MEETING</span>
                     <h3>2026 G-DRAGON 'FAM' MEETING IN JAPAN 邀请视频</h3>
                     <p class="meta">2026年 · 来源: 横滨场</p>
+                    <div class="detail">
+                        <p>2026年G-DRAGON 'FAM' MEETING日本横滨场邀请视频发布！活动吸引了大量日本粉丝参加，粉丝们表示这是最难忘的回忆。活动中权志龙与粉丝进行了多种互动环节。</p>
+                        <p class="expand-hint">点击收起</p>
+                    </div>
                 </article>
-                <article class="notice-card">
+                <article class="notice-card" onclick="toggleDetail(this)">
                     <span class="tag merch">MERCH</span>
                     <h3>G-DRAGON 官方应援棒 LIGHT STICK [DAY-G] 联动指南</h3>
                     <p class="meta">2026年 · 来源: 官方</p>
+                    <div class="detail">
+                        <p>官方应援棒LIGHT STICK [DAY-G]可通过专属APP进行设置和联动。支持多种颜色模式，可与其他粉丝的应援棒进行同步。应援棒可通过withmuu.com常年购买。</p>
+                        <p class="expand-hint">点击收起</p>
+                    </div>
                 </article>
             </div>
         </section>
@@ -613,6 +667,12 @@
     </footer>
     
     <script>
+        // 展开/收起公告详情
+        function toggleDetail(card) {
+            const detail = card.querySelector('.detail');
+            detail.classList.toggle('show');
+        }
+        
         const knowledge = {
             '演唱会': 'G-DRAGON 2025 WORLD TOUR [Übermensch] 已圆满结束！共经过首尔、东京、澳门、悉尼、墨尔本、台北、吉隆坡、雅加达、香港、纽瓦克、拉斯维加斯、洛杉矶、巴黎、河内等城市。感谢所有粉丝的支持！',
             '退伍': '权志龙于2019年10月26日退伍。',
