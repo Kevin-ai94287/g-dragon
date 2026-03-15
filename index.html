@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>权志龙中文站 | G-Dragon Chinese Fan Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #000;
+            --accent: #ff1744;
+            --bg: #fff;
+            --gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: var(--bg);
+        }
+        
+        /* Header */
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+        
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .news-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #333, #666);
+        }
+        
+        .news-card .content {
+            padding: 1rem;
+        }
+        
+        .news-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .news-card .meta {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        
+        /* Concert Section */
+        .concert-list {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .concert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .concert-date {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        /* Merch Section */
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .merch-item {
+            text-align: center;
+        }
+        
+        .merch-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #eee;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* AI Chat */
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .chat-box {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: var(--gray);
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+        }
+        
+        .message.user {
+            background: var(--primary);
+            color: #fff;
+            margin-left: auto;
+        }
+        
+        .message.bot {
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .chat-input button {
+            margin-left: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .chat-input button:hover {
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">G<span>-</span>DRAGON <span style="font-weight:300">权志龙</span></div>
+            <ul class="nav-links">
+                <li><a href="#news">新闻</a></li>
+                <li><a href="#concert">演唱会</a></li>
+                <li><a href="#merch">周边</a></li>
+                <li><a href="#ai">AI问答</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="hero">
+        <h1>权志龙中文站</h1>
+        <p>G-Dragon | 권지용 | 权志龙</p>
+    </div>
+    
+    <div class="container">
+        <!-- 新闻区 -->
+        <section id="news">
+            <h2>📰 最新新闻</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="content">
+                        <h3>权志龙2024世界巡回演唱会即将开启</h3>
+                        <p class="meta">2024-03-15 | 来源: Instagram</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="content">
+                        <h3>PEACEMINUSONE 全新联名系列发布</h3>
+                        <p class="meta">2024-03-10 | 来源: 官网</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="content">
+                        <h3>权志龙现身巴黎时装周</h3>
+                        <p class="meta">2024-03-05 | 来源: X</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- 演唱会区 -->
+        <section id="concert">
+            <h2>🎤 演唱会情报</h2>
+            <div class="concert-list">
+                <div class="concert-item">
+                    <div>
+                        <h3>ACT III: MOTTE 世界巡回演唱会</h3>
+                        <p>首尔・巴黎・纽约・东京</p>
+                    </div>
+                    <span class="concert-date">2024</span>
+                </div>
+                <div class="concert-item">
+                    <div>
+                        <h3>权志龙个人演唱会</h3>
+                        <p>更多场次陆续公布...</p>
+                    </div>
+                    <span class="concert-date">待定</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 周边区 -->
+        <section id="merch">
+            <h2>🛍️ 官方周边</h2>
+            <div class="merch-grid">
+                <div class="merch-item">
+                    <img src="https://via.placeholder.com/200x200/333/fff?text=PARK+CHANY" alt="周边">
+                    <p>PARK CHANY 联名款</p>
+                </div>
+                <div class="merch-item">
+                    <img src="https://via.placeholder.com/200x200/333/fff?text=联名" alt="周边">
+                    <p>PEACEMINUSONE x Nike</p>
+                </div>
+                <div class="merch-item">
+                    <img src="https://via.placeholder.com/200x200/333/fff?text=服装" alt="周边">
+                    <p>限定服装系列</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AI问答区 -->
+        <section id="ai">
+            <h2>🤖 AI 问答</h2>
+            <div class="chat-container">
+                <div class="chat-box">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            你好！我是权志龙AI助手，可以回答关于权志龙的问题～
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="userInput" placeholder="问我关于权志龙的问题...">
+                        <button onclick="sendMessage()">发送</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>权志龙中文站 | G-Dragon Chinese Fan Site</p>
+        <p>© 2024 GD中文站. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        // AI问答功能（模拟）
+        const knowledge = {
+            '演唱会': '权志龙最近一次个人演唱会是"ACT III: MOTTE"世界巡回演唱会，于2017-2018年举办。目前暂无新的个人演唱会官方消息。',
+            '退伍': '权志龙于2019年10月26日退伍，退伍后保持了低调作风，偶尔出席时尚活动。',
+            '新歌': '权志龙退伍后暂无正式发行的新歌，但他偶尔会通过社交媒体分享音乐相关内容。',
+            '品牌': '权志龙创立了个人品牌PEACEMUSONE，与Nike、Chanel等品牌有联名合作。',
+            '权志龙': '权志龙（G-Dragon）是韩国歌手、词曲制作人、时尚icon，是BIGBANG队长，被誉为"韩国潮流引领者"。'
+        };
+        
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const messages = document.getElementById('chatMessages');
+            const question = input.value.trim();
+            
+            if (!question) return;
+            
+            // 用户消息
+            messages.innerHTML += `<div class="message user">${question}</div>`;
+            input.value = '';
+            
+            // 模拟AI回复
+            setTimeout(() => {
+                let answer = '抱歉，我暂时没有这个问题的信息。你可以尝试问关于演唱会、退伍、新歌等方面的问题。';
+                
+                for (const key in knowledge) {
+                    if (question.includes(key)) {
+                        answer = knowledge[key];
+                        break;
+                    }
+                }
+                
+                messages.innerHTML += `<div class="message bot">${answer}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+        }
+        
+        // 回车发送
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
